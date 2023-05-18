@@ -1,0 +1,12 @@
+
+Example program written in Grug lang
+
+fn main x :: num =
+    let hi = "hello";
+    let y = 10;
+    return x + (10 * y);
+
+let z = main 10;
+
+# z evaluates to 20 
+
