@@ -12,7 +12,7 @@ vector<Token> Lexer::tokenize()
         cout << ch;
         if (commenting == true)
         {
-            if (ch == '#' || ch == '\n')
+            if (ch == '#')
                 commenting = false;
         }
         else 
@@ -66,6 +66,7 @@ vector<Token> Lexer::tokenize()
         }
     }
     this->add_token(EOFTOK);
+    fin.close();
     return this->tokens;
 }
 

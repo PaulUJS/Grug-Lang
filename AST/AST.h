@@ -3,6 +3,8 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
+
 #include "../Lexer/lexer.h"
 
 using namespace std;
@@ -11,6 +13,7 @@ class ExprAST
 {
     public:
         virtual ~ExprAST() = default;
+        virtual string code_gen() = 0;
 };
 
 class NumExprAST : public ExprAST
@@ -19,6 +22,7 @@ class NumExprAST : public ExprAST
     
     public:
         NumExprAST(int val) : val(val) {}
+        string code_gen() override;
 };
 
 class VarExprAST : public ExprAST 
@@ -37,6 +41,7 @@ class BinaryExprAST : public ExprAST
     public:
         BinaryExprAST(TokenType op, unique_ptr<ExprAST> LHS,
                 unique_ptr<ExprAST> RHS) : op(op), LHS(move(LHS)), RHS(move(RHS)) {}
+        string code_gen() override;
 };
 
 class CallExprAST : public ExprAST
@@ -47,6 +52,7 @@ class CallExprAST : public ExprAST
     public:
         CallExprAST(const string& called, vector<unique_ptr<ExprAST>> args)
             : called(called), args(move(args)) {}
+
 };
 
 class PrototypeAST 
@@ -57,7 +63,6 @@ class PrototypeAST
     public:
         PrototypeAST(const string& name, vector<string> args) : name(name),
         args(move(args)) {}
-
         const string& get_name() const { return this->name; }
 };
 
@@ -69,6 +74,7 @@ class FunctionAST
     public:
         FunctionAST(unique_ptr<PrototypeAST> proto, unique_ptr<ExprAST> body)
             : proto(move(proto)), body(move(body)) {}
+
 };
 
 #endif

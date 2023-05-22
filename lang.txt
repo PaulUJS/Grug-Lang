@@ -1,4 +1,4 @@
-
+#
 Example program written in Grug lang
 
 fn main x :: num =
@@ -8,5 +8,9 @@ fn main x :: num =
 
 let z = main 10;
 
-# z evaluates to 20 
+z evaluates to 20
+#
+
+10 + 20
+30 * 45
 

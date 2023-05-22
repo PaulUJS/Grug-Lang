@@ -12,11 +12,20 @@ vector<Token> lex()
     vector<Token> tokens = lexer.tokenize();
     lexer.print();
     lexer.print_errors();
+
+    Parser parser(tokens, lexer.errors);
+    auto ast = parser.parse();
+    cout << ".main \n";
+    for (unsigned int i = 0; i < ast.size(); i++)
+    {
+        cout << ast[i]->code_gen();
+        cout << "\n";
+    }
     return tokens;
 }
 
 int main() 
 {
-    lex(); 
+    lex();
     return 0;
 }

@@ -35,7 +35,7 @@ class Parser
         Parser(vector<Token> tokens, vector<Error> errors) : tokens(tokens), errors(errors) {}
         ~Parser() {};
 
-        unique_ptr<ExprAST> parse();
+        vector<unique_ptr<ExprAST>> parse();
 };
 
 #endif
